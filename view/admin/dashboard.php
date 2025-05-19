@@ -6,4 +6,4 @@ if ($_SESSION['role'] !== 'admin') {
 }
 echo "Welcome, Admin!";
 ?>
-<a href="../logout.php">Logout</a>
+<a href="/logout">Logout</a>

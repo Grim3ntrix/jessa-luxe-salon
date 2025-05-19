@@ -1,22 +1,22 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Jessa Luxe Salon - Login</title>
-</head>
-<body>
-    <h2>Login</h2>
-    <?php if (isset($_SESSION['error'])): ?>
-        <p style="color:red"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
-    <?php endif; ?>
-    <form action="login_handler.php" method="POST">
-        <label>Email:</label>
-        <input type="email" name="email" required><br>
+<?php
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        <label>Password:</label>
-        <input type="password" name="password" required><br>
-
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+switch ($uri) {
+    case '/admin/dashboard':
+        require_once __DIR__ . '/../view/admin/dashboard.php';
+        break;
+    case '/client/dashboard':
+        require_once __DIR__ . '/../view/client/dashboard.php';
+        break;
+    case '/logout':
+        require_once __DIR__ . '/../view/auth/logout.php';
+        break;
+    case '/login_request':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_once __DIR__ . '/../controller/auth/login_request.php';
+        }
+        break;
+    default:
+        require_once __DIR__ . '/../view/auth/login.php';
+        break;
+}

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/db.php';
+require_once __DIR__ . '/../../config/db.php';
 
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
@@ -16,13 +16,13 @@ if ($user && $password === $user['password']) {
     $_SESSION['role'] = $user['role'];
 
     if ($user['role'] === 'admin') {
-        header("Location: /admin/dashboard.php");
+        header("Location: /admin/dashboard");
     } else {
-        header("Location: /client/dashboard.php");
+        header("Location: /client/dashboard");
     }
     exit;
 } else {
     $_SESSION['error'] = "Invalid email or password.";
-    header("Location: index.php");
+    header("Location: /");
     exit;
 }
