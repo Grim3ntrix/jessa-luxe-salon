@@ -11,6 +11,14 @@ switch ($uri) {
     case '/logout':
         require_once __DIR__ . '/../view/auth/logout.php';
         break;
+    case '/signup':
+        require_once __DIR__ . '/../view/auth/signup.php';
+        break;
+    case '/signup_request':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_once __DIR__ . '/../controller/auth/signup_request.php';
+        }
+        break;
     case '/login_request':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require_once __DIR__ . '/../controller/auth/login_request.php';
