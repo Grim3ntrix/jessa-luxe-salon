@@ -16,12 +16,12 @@ switch ($uri) {
         break;
     case '/signup_request':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            require_once __DIR__ . '/../controller/auth/signup_request.php';
+            require_once __DIR__ . '/../http/requests/auth/signup_request.php';
         }
         break;
     case '/login_request':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            require_once __DIR__ . '/../controller/auth/login_request.php';
+            require_once __DIR__ . '/../http/requests/auth/login_request.php';
         }
         break;
     default:
