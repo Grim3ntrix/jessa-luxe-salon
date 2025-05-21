@@ -1,12 +1,10 @@
 <?php
+require_once __DIR__ . '/../../../model/user_model.php';
 
 function loginUser(string $email, string $password, PDO $pdo): void
 {
-    $sql  = "SELECT * FROM users WHERE email = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$email]);
 
-    $user = $stmt->fetch();
+    $user = findUserByEmail($pdo, $email);
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
