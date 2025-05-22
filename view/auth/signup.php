@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Jessa Luxe Salon - Register</title>
+    <title>Jessa Luxe Salon - Sign Up</title>
 </head>
 <body>
     <h2>Sign Up</h2>
