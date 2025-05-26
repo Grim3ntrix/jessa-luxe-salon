@@ -7,26 +7,35 @@
 <html>
 <head>
     <title>Jessa Luxe Salon - Login</title>
+    <link rel="stylesheet" href="/css/auth/auth.css">
+    <script src="/js/auth/auth.js" defer></script>
 </head>
 <body>
-    <h2>Login</h2>
-    <?php if (isset($_SESSION['error'])): ?>
-        <p style="color:red"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
-    <?php endif; ?>
+    <div class="auth-wrapper">
+        <div>
+            <img src="/images/JLS-logo-1.png" alt="Jessa Luxe Salon" class="logo">
+        </div>
 
-    <?php if (isset($_SESSION['success'])): ?>
-        <p style="color:green"><?= $_SESSION['success']; unset($_SESSION['success']); ?></p>
-    <?php endif; ?>
+        <div class="login-container">
+            <?php if ($error): ?>
+                <p class="error"><?= $error; unset($_SESSION['error']); ?></p>
+            <?php endif; ?>
 
-    <form action="/login_request" method="POST">
-        <label>Email:</label>
-        <input type="email" name="email" placeholder="Email" value="<?= htmlspecialchars($old['email'] ?? '') ?>"><br>
+            <?php if ($success): ?>
+                <p class="success"><?= $success; unset($_SESSION['success']); ?></p>
+            <?php endif; ?>
 
-        <label>Password:</label>
-        <input type="password" name="password" placeholder="Password"><br>
+            <form action="/login_request" method="POST">
+                <input type="email" name="email" placeholder="Email address" value="<?= htmlspecialchars($old['email'] ?? '') ?>">
+                <input type="password" name="password" placeholder="Password">
+                <button type="submit">Login</button>
+            </form>
 
-        <button type="submit">Login</button>
-        <button ><a href="/signup">Create new account</a></button>
-    </form>
+             <div class="login-link">
+                <p><a href="/signup" class="signup-link">Create new account</a></p>
+            </div>
+            
+        </div>
+    </div>
 </body>
 </html>

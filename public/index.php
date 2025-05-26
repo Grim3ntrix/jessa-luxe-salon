@@ -2,12 +2,29 @@
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri) {
+    case '/db_seeder':
+        require_once __DIR__ . '/../database/seeder/db_seeder.php';
+        break;
+    // Admin routes
+    case '/adminseeder':
+        require_once __DIR__ . '/../database/seeder/admin_seeder.php';
+        break;
+    case '/admin/profile':
+        require_once __DIR__ . '/../view/partials/profile_index.php';
+        break;
     case '/admin/dashboard':
         require_once __DIR__ . '/../view/admin/dashboard.php';
+        break;
+    case '/admin/appointments':
+        require_once __DIR__ . '/../view/admin/appointment/appointment-index.php';
+        break;
+    case '/admin/services':
+        require_once __DIR__ . '/../view/admin/service/service-index.php';
         break;
     case '/client/dashboard':
         require_once __DIR__ . '/../view/client/dashboard.php';
         break;
+    // Auth routes
     case '/logout':
         require_once __DIR__ . '/../view/auth/logout.php';
         break;
@@ -23,6 +40,13 @@ switch ($uri) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require_once __DIR__ . '/../http/requests/auth/login_request.php';
         }
+        break;
+    // API routes
+    case '/api/admin/services':
+        require_once __DIR__ . '/../http/controller/services_controller.php';
+        break;
+    case '/api/admin/appointment':
+        require_once __DIR__ . '/../http/controller/appointment_controller.php';
         break;
     default:
         require_once __DIR__ . '/../view/auth/login.php';

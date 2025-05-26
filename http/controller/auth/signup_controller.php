@@ -9,7 +9,7 @@ function signUpUser(string $username, string $email, string $password, PDO $pdo)
         $success = createUser($pdo, $username, $email, $password, $role );
 
         if ($success) {
-            $_SESSION['success'] = "Your account has been created! You can now log in.!";
+            $_SESSION['success'] = "Your account has been created! Log in now.!";
             unset($_SESSION['old']);
             header("Location: /login");
             exit;

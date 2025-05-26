@@ -1,0 +1,154 @@
+/* ============================
+   COMMON STYLES (Shared)
+============================ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f2f4f7;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 25px;
+    display: block;
+    border: 1px solid #8a2be2; 
+    border-radius: 5%;         
+    background-color: #fff;     
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+/* Input fields */
+input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: #8a2be2;
+    outline: none;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #8a2be2;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #7526c1;
+}
+
+/* Feedback Messages */
+.message,
+.error,
+.success {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.error {
+    color: #e74c3c;
+}
+
+.success {
+    color: #2ecc71;
+}
+
+/* Shared link styling */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* ============================
+   LOGIN PAGE SPECIFIC
+============================ */
+
+.login-container {
+    background: #ffffff;
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+  
+/* ============================
+   SIGNUP PAGE SPECIFIC
+============================ */
+.auth-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.signup-container {
+    background-color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.signup-container h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.signup-container p {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.signup-container hr {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    width: calc(100% + 4rem);
+    margin: 0 -2rem 1.2rem;
+}
+
+.login-link, .signup-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.login-link a {
+    color: #8a2be2;
+}
