@@ -2,13 +2,14 @@
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri) {
+    // Seeder routes
     case '/db_seeder':
         require_once __DIR__ . '/../database/seeder/db_seeder.php';
         break;
-    // Admin routes
     case '/adminseeder':
         require_once __DIR__ . '/../database/seeder/admin_seeder.php';
         break;
+    // Admin routes
     case '/admin/profile':
         require_once __DIR__ . '/../view/partials/profile_index.php';
         break;
@@ -47,6 +48,11 @@ switch ($uri) {
         break;
     case '/api/admin/appointment':
         require_once __DIR__ . '/../http/controller/appointment_controller.php';
+        break;
+    case '/api/admin/appointment/update':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            require_once __DIR__ . '/../http/controller/appointment_controller.php';
+        }
         break;
     default:
         require_once __DIR__ . '/../view/auth/login.php';

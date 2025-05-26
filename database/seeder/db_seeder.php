@@ -4,19 +4,18 @@ require_once __DIR__ . '/../../config/db.php';
 $dbName = 'jessa_luxe_salon';
 
 try {
-    // 1. Drop the database if exists (like migrate:fresh)
+
     $pdo->exec("DROP DATABASE IF EXISTS `$dbName`");
     echo "Database dropped if existed.\n" . "<br/>";
 
-    // 2. Create the database
+
     $pdo->exec("CREATE DATABASE `$dbName` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci");
     echo "Database created.\n" . "<br/>";
 
-    // 3. Select the database
+
     $pdo->exec("USE `$dbName`");
     echo "Using database $dbName.\n" . "<br/>";
 
-    // 4. Create tables
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS `users` (
           `id` int NOT NULL AUTO_INCREMENT,
@@ -45,20 +44,33 @@ try {
     ");
 
     $pdo->exec("
+        CREATE TABLE IF NOT EXISTS `schedules` (
+            `id` int NOT NULL AUTO_INCREMENT,
+            `service_id` int NOT NULL,
+            `schedule_date` date NOT NULL,
+            `schedule_time` time NOT NULL,
+            `status` enum('available', 'blocked') DEFAULT 'available',
+            `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+            `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            KEY `service_id` (`service_id`),
+            CONSTRAINT `schedules_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+    ");
+
+    $pdo->exec("
         CREATE TABLE IF NOT EXISTS `appointments` (
-          `id` int NOT NULL AUTO_INCREMENT,
-          `service_id` int NOT NULL,
-          `user_id` int DEFAULT NULL COMMENT 'Filled when client books the slot',
-          `appointment_date` date NOT NULL,
-          `appointment_time` time NOT NULL,
-          `status` enum('available','booked','cancelled') DEFAULT 'available',
-          `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-          `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-          PRIMARY KEY (`id`),
-          KEY `service_id` (`service_id`),
-          KEY `user_id` (`user_id`),
-          CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE,
-          CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
+            `id` int NOT NULL AUTO_INCREMENT,
+            `schedule_id` int NOT NULL,
+            `user_id` int NOT NULL,
+            `status` enum('pending', 'confirmed', 'cancelled') DEFAULT 'pending',
+            `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+            `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`),
+            KEY `schedule_id` (`schedule_id`),
+            KEY `user_id` (`user_id`),
+            CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`schedule_id`) REFERENCES `schedules` (`id`) ON DELETE CASCADE,
+            CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
     ");
 
@@ -82,7 +94,6 @@ try {
 
     echo "Tables created successfully.\n" . "<br/>";
 
-    // 5. Insert seed data for users
     $insertUsers = "
         INSERT INTO `users` (`username`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
         ('Jessa Luxe Salon', 'jls@gmail.com', :pass1, 'admin', NOW(), NOW()),
@@ -95,7 +106,6 @@ try {
     ]);
     echo "Users seeded.\n";
 
-    // 6. Insert seed data for services (example)
     $pdo->exec("
         INSERT INTO `services` (`name`, `description`, `duration`, `price`, `created_at`, `updated_at`) VALUES
         ('Haircut', 'Standard haircut service', 30, 15.00, NOW(), NOW()),
@@ -103,7 +113,19 @@ try {
     ");
     echo "Services seeded.\n" . "<br/>";
 
-    // You can add more seed inserts for appointments, profile etc similarly
+    $pdo->exec("
+        INSERT INTO `schedules` (`service_id`, `schedule_date`, `schedule_time`, `status`, `created_at`, `updated_at`) VALUES
+        (1, '2025-06-01', '10:00:00', 'available', NOW(), NOW()),
+        (1, '2025-06-01', '11:00:00', 'available', NOW(), NOW()),
+        (2, '2025-06-01', '12:00:00', 'available', NOW(), NOW())
+    ");
+    echo "Schedule seeded.\n" . "<br/>";
+
+    $pdo->exec("
+        INSERT INTO `appointments` (`schedule_id`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
+        (1, 2, 'confirmed', NOW(), NOW())
+    ");
+    echo "Appointments seeded.\n" . "<br/>";
 
     echo "Database seeding finished.\n" . "<br/><br/>";
 
