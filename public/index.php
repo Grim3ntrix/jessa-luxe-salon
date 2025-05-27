@@ -1,6 +1,13 @@
 <?php
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+// Handle dynamic route first
+if (preg_match('#^/api/admin/services/(\d+)$#', $uri, $matches)) {
+    $_GET['service_id'] = $matches[1];
+    require_once __DIR__ . '/../http/controller/service_single_controller.php';
+    exit;
+}
+
 switch ($uri) {
     // Seeder routes
     case '/db_seeder':

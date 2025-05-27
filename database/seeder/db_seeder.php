@@ -109,7 +109,21 @@ try {
     $pdo->exec("
         INSERT INTO `services` (`name`, `description`, `duration`, `price`, `created_at`, `updated_at`) VALUES
         ('Haircut', 'Standard haircut service', 30, 15.00, NOW(), NOW()),
-        ('Hair Coloring', 'Professional hair coloring', 90, 45.00, NOW(), NOW())
+        ('Hair Coloring', 'Professional hair coloring', 90, 45.00, NOW(), NOW()),
+        ('Hair Rebonding', 'Straightening and smoothing treatment', 180, 120.00, NOW(), NOW()),
+        ('Hair Perm', 'Create long-lasting curls or waves', 150, 100.00, NOW(), NOW()),
+        ('Hair Treatment', 'Deep conditioning treatment', 60, 35.00, NOW(), NOW()),
+        ('Blow Dry', 'Professional hair blow-dry styling', 30, 20.00, NOW(), NOW()),
+        ('Hair Spa', 'Relaxing hair spa for nourishment', 60, 50.00, NOW(), NOW()),
+        ('Manicure', 'Classic manicure with polish', 45, 25.00, NOW(), NOW()),
+        ('Pedicure', 'Classic pedicure with polish', 60, 30.00, NOW(), NOW()),
+        ('Gel Manicure', 'Gel-based manicure with extended wear', 60, 40.00, NOW(), NOW()),
+        ('Gel Pedicure', 'Gel-based pedicure with extended wear', 75, 45.00, NOW(), NOW()),
+        ('Facial', 'Basic facial treatment for skin rejuvenation', 60, 50.00, NOW(), NOW()),
+        ('Body Massage', 'Relaxing full body massage', 90, 70.00, NOW(), NOW()),
+        ('Waxing - Arms', 'Waxing service for arms', 45, 30.00, NOW(), NOW()),
+        ('Waxing - Legs', 'Waxing service for legs', 60, 40.00, NOW(), NOW()),
+        ('Makeup', 'Professional makeup application for events', 90, 100.00, NOW(), NOW())
     ");
     echo "Services seeded.\n" . "<br/>";
 
