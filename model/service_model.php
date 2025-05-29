@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../config/db.php';
+
 function getSalonServices(PDO $pdo): array 
 {
     $stmt = $pdo->query("SELECT * FROM services");
@@ -46,3 +48,12 @@ function deleteSalonService(PDO $pdo, int $id): bool
     $stmt = $pdo->prepare($sql);
     return $stmt->execute([':id' => $id]);
 }
+
+function serviceCount(PDO $pdo): int
+{
+    $sql = "SELECT * FROM services";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->rowCount();
+}
+

@@ -92,3 +92,11 @@ function deleteSalonSchedule(PDO $pdo, int $id): bool
     $stmt = $pdo->prepare($sql);
     return $stmt->execute([':id' => $id]);
 }
+
+function scheduleCount(PDO $pdo): int
+{
+    $sql = "SELECT * FROM schedules WHERE status = 'available'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->rowCount();
+}

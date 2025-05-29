@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../config/db.php';
+
 function findUserByEmail(PDO $pdo, string $email): ?array
 {
     $sql  = "SELECT * FROM users WHERE email = ?";

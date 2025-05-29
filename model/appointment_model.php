@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../config/db.php';
+
 function getAppointments(PDO $pdo): array 
 {
     $sql  = "SELECT 
@@ -59,3 +61,10 @@ function updateAppointmentStatus(PDO $pdo, int $id, string $status): bool
     return $stmt->rowCount() > 0;
 }
 
+function appointmentCount(PDO $pdo): int
+{
+    $sql = "SELECT * FROM appointments";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return $stmt->rowCount();
+}

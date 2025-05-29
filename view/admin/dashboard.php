@@ -3,6 +3,13 @@ session_start();
 $old = $_SESSION['old'] ?? [];
 $error = $_SESSION['error'] ?? null;
 $success = $_SESSION['success'] ?? null;
+
+require_once  __DIR__ . '/../../http/controller/dashboard_controller.php';
+require_once  __DIR__ . '/../../config/db.php';
+
+$appointmentCount = getAappointmentCount($pdo);
+$servicesCount = getServicesCount($pdo);
+$dailyScheduleCount = getDailySchedule($pdo);
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +39,7 @@ $success = $_SESSION['success'] ?? null;
             </span>
             <h3>Appointments</h3>
         </div>
-        <p class="card-value">120</p>
+        <p class="card-value"><?= htmlspecialchars($appointmentCount) ?></p>
         <p class="card-description">Total appointments today</p>
     </div>
 
@@ -50,11 +57,30 @@ $success = $_SESSION['success'] ?? null;
             </span>
             <h3>Total Services</h3>
         </div>
-        <p class="card-value">35</p>
+        <p class="card-value"><?= htmlspecialchars($servicesCount) ?></p>
         <p class="card-description">Service offerings</p>
     </div>
 
     <div class="dashboard-card border-orange">
+        <div class="card-header">
+            <span class="icon-box orange">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-check2-icon lucide-calendar-check-2">
+                    <path d="M8 2v4"/>
+                    <path d="M16 2v4"/>
+                    <path d="M21 14V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8"/>
+                    <path d="M3 10h18"/>
+                    <path d="m16 20 2 2 4-4"/>
+                </svg>
+            </span>
+            <h3>Schedules</h3>
+        </div>
+        <p class="card-value"><?= htmlspecialchars($dailyScheduleCount) ?></p>
+        <p class="card-description">Daily available schedules</p>
+    </div>
+
+    
+
+    <!-- <div class="dashboard-card border-orange">
         <div class="card-header">
             <span class="icon-box orange">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
@@ -67,7 +93,7 @@ $success = $_SESSION['success'] ?? null;
         </div>
         <p class="card-value">₱45,000</p>
         <p class="card-description">This day earnings</p>
-    </div>
+    </div> -->
 </div>
 
 </div>
