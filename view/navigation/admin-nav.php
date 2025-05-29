@@ -6,6 +6,7 @@
         <a href="/admin/dashboard">Dashboard</a>
         <a href="/admin/appointments">Appointments</a>
         <a href="/admin/services">Services</a>
+        <a href="/admin/schedule">Schedule</a>
     </div>
     <div class="nav-right">
         <a href="/admin/profile">Profile</a>

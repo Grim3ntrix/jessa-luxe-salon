@@ -8,6 +8,12 @@ if (preg_match('#^/api/admin/services/(\d+)$#', $uri, $matches)) {
     exit;
 }
 
+if (preg_match('#^/api/admin/schedules/(\d+)$#', $uri, $matches)) {
+    $_GET['id'] = $matches[1];
+    require_once __DIR__ . '/../http/controller/schedule_single_controller.php';
+    exit;
+}
+
 switch ($uri) {
     // Seeder routes
     case '/db_seeder':
@@ -28,6 +34,9 @@ switch ($uri) {
         break;
     case '/admin/services':
         require_once __DIR__ . '/../view/admin/service/service-index.php';
+        break;
+    case '/admin/schedule':
+        require_once __DIR__ . '/../view/admin/schedule/schedule-index.php';
         break;
     case '/client/dashboard':
         require_once __DIR__ . '/../view/client/dashboard.php';
@@ -60,6 +69,9 @@ switch ($uri) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require_once __DIR__ . '/../http/controller/appointment_controller.php';
         }
+        break;
+    case '/api/admin/schedules':
+        require_once __DIR__ . '/../http/controller/schedule_controller.php';
         break;
     default:
         require_once __DIR__ . '/../view/auth/login.php';

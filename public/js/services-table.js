@@ -26,7 +26,15 @@ document.addEventListener('DOMContentLoaded', function() {
                                 return cell.getValue() + " min.";
                             } 
                         },
-                        { title: "Price", field: "price" },
+                        { title: "Price", 
+                            field: "price",
+                            formatter: "money",
+                            formatterParams: {
+                                symbol: "₱",
+                                thousand: ",",
+                                precision: 2
+                            }
+                         },
                         { 
                         title: "Actions", 
                             formatter: function(cell, formatterParams, onRendered){

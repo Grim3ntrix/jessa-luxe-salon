@@ -49,7 +49,7 @@ try {
             `service_id` int NOT NULL,
             `schedule_date` date NOT NULL,
             `schedule_time` time NOT NULL,
-            `status` enum('available', 'blocked') DEFAULT 'available',
+            `status` enum('available', 'booked', 'completed', 'blocked', 'cancelled') DEFAULT 'available',
             `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
             `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (`id`),
