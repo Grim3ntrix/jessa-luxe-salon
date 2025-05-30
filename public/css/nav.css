@@ -1,10 +1,18 @@
 /* Admin Navigation */
 
+
 .admin-navbar {
+    background-color: #8a2be2;
+}
+
+.client-navbar {
+    background-color: #3b82f6;
+}
+
+.admin-navbar, .client-navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #8a2be2;
     padding: 10px 20px;
     color: white;
     font-family: Arial, sans-serif;

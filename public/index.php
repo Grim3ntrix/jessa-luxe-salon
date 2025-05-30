@@ -22,9 +22,10 @@ switch ($uri) {
     case '/adminseeder':
         require_once __DIR__ . '/../database/seeder/admin_seeder.php';
         break;
+
     // Admin routes
     case '/admin/profile':
-        require_once __DIR__ . '/../view/partials/profile_index.php';
+        require_once __DIR__ . '/../view/partials/admin/profile_index.php';
         break;
     case '/admin/dashboard':
         require_once __DIR__ . '/../view/admin/dashboard.php';
@@ -38,9 +39,22 @@ switch ($uri) {
     case '/admin/schedule':
         require_once __DIR__ . '/../view/admin/schedule/schedule-index.php';
         break;
+
+
+    // Client routes
+    case '/client/profile':
+        require_once __DIR__ . '/../view/partials/client/profile_index.php';
+        break;
     case '/client/dashboard':
         require_once __DIR__ . '/../view/client/dashboard.php';
         break;
+    case '/client/appointments':
+        require_once __DIR__ . '/../view/client/appointment/appointment-index.php';
+        break;
+    case '/client/schedules':
+        require_once __DIR__ . '/../view/client/schedule/schedule-index.php';
+        break;
+
     // Auth routes
     case '/logout':
         require_once __DIR__ . '/../view/auth/logout.php';
@@ -58,6 +72,7 @@ switch ($uri) {
             require_once __DIR__ . '/../http/requests/auth/login_request.php';
         }
         break;
+
     // API routes
     case '/api/admin/services':
         require_once __DIR__ . '/../http/controller/services_controller.php';

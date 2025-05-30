@@ -13,7 +13,7 @@ $success = $_SESSION['success'] ?? null;
 </head>
 <body>
 
-<?php include __DIR__ . '/../navigation/admin-nav.php'; ?>
+<?php include __DIR__ . '/../../navigation/client-nav.php'; ?>
 
 <div class="container">
 <p>This is the profile</p>

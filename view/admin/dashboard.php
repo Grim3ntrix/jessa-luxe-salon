@@ -7,7 +7,7 @@ $success = $_SESSION['success'] ?? null;
 require_once  __DIR__ . '/../../http/controller/dashboard_controller.php';
 require_once  __DIR__ . '/../../config/db.php';
 
-$appointmentCount = getAappointmentCount($pdo);
+$appointmentCount = getAppointmentCount($pdo);
 $servicesCount = getServicesCount($pdo);
 $dailyScheduleCount = getDailySchedule($pdo);
 ?>
