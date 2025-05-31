@@ -15,10 +15,12 @@ function getSalonSchedules(PDO $pdo): array
         sv.duration AS service_duration,
         sv.price AS service_price
     FROM schedules s
-    JOIN services sv ON s.service_id = sv.id";
+    JOIN services sv ON s.service_id = sv.id
+    WHERE s.status = :status";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    $stmt->execute(['status' => 'available']); 
+
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $schedules = [];

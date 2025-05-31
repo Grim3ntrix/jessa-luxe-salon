@@ -251,3 +251,136 @@ body, html {
 }
 
 /* Appointments */
+
+/* Client Daily Schedules */
+
+.intro-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #222;
+    text-align: center;
+}
+
+.schedule-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    min-height: 430px;
+}
+
+.card:hover {
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+    transform: translateY(-6px);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+    color: #1c1c1c;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 1.4rem;
+    min-height: 3.4em; /* keep consistent height */
+}
+
+.card-details p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.card-details p strong {
+    color: #222;
+    font-weight: 600;
+    min-width: 70px;
+    display: inline-block;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #e91e63;
+    margin-top: 0.5rem;
+}
+
+/* Vanilla badge styling (pill badges) */
+.badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    color: #fff;
+}
+
+.rounded-pill {
+    border-radius: 10rem;
+}
+
+/* Background color classes */
+.bg-primary { background-color: #0d6efd; }
+.bg-secondary { background-color: #6c757d; }
+.bg-success { background-color: #198754; }
+.bg-danger { background-color: #dc3545; }
+.bg-warning { background-color: #ffc107; color: #212529; }
+.bg-info { background-color: #0dcaf0; color: #212529; }
+.bg-light { background-color: #f8f9fa; color: #212529; }
+.bg-dark { background-color: #212529; }
+
+/* Card actions */
+.card-actions {
+    margin-top: auto;
+}
+
+.book-button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, #6c63ff, #7f72ff);
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.book-button:hover {
+    background: linear-gradient(135deg, #574fd6, #6c63ff);
+    transform: translateY(-2px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .container {
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+    }
+
+    .card {
+        min-height: 450px;
+    }
+}

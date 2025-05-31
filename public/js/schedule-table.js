@@ -49,41 +49,21 @@ document.addEventListener('DOMContentLoaded', function() {
                             minWidth: 150 
                         },
                         { 
-                            title: "Status", 
-                            field: "status", 
-                            minWidth: 100,
+                        title: "Status", 
+                        field: "status", 
+                        minWidth: 100,
                             formatter: function(cell) {
-                                const status = cell.getValue();
-                                let color = '';
-                                let bg = '';
+                                const status = cell.getValue().toLowerCase();
 
-                                if (status === 'available') {
-                                    color = '#155724';  
-                                    bg = '#d4edda';     
-                                } else if (status === 'booked') {
-                                    color = '#856404';  
-                                    bg = '#fff3cd';     
-                                } else if (status === 'completed') {
-                                    color = '#383d41';  
-                                    bg = '#e2e3e5';     
-                                } else if (status === 'blocked') {
-                                    color = '#721c24';  
-                                    bg = '#f8d7da';     
-                                } else if (status === 'cancelled') {
-                                    color = '#0c5460'; 
-                                    bg = '#d1ecf1';     
-                                } else {
-                                    return status;
-                                }
+                                const statusClassMap = {
+                                    confirmed: 'badge rounded-pill bg-success',
+                                    cancelled: 'badge rounded-pill bg-primary',
+                                    cancelled: 'badge rounded-pill bg-secondary'
+                                };
 
-                                return `<span style="
-                                    display: inline-block;
-                                    padding: 2px 8px;
-                                    border-radius: 12px;
-                                    background-color: ${bg};
-                                    color: ${color};
-                                    font-size: 0.85em;
-                                ">${status.charAt(0).toUpperCase() + status.slice(1)}</span>`;
+                                const badgeClass = statusClassMap[status] || 'badge rounded-pill bg-light';
+
+                                return `<span class="${badgeClass}">${status.charAt(0).toUpperCase() + status.slice(1)}</span>`;
                             }
                         },
                         {

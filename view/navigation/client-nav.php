@@ -8,7 +8,7 @@
         <a href="/client/schedules">Schedules</a>
     </div>
     <div class="nav-right">
-        <a href="/client/profile">Profile</a>
+        <!-- <a href="/client/profile">Profile</a> -->
         <a href="/logout">Logout</a>
     </div>
 </nav>

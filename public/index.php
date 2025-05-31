@@ -54,6 +54,12 @@ switch ($uri) {
     case '/client/schedules':
         require_once __DIR__ . '/../view/client/schedule/schedule-index.php';
         break;
+    case '/client/get-schedules':
+        require_once __DIR__ . '/../http/controller/schedule_controller.php';
+        break;
+    case '/client/book-schedule':
+        require_once __DIR__ . '/../http/controller/client/book_schedule_controller.php';
+        break;
 
     // Auth routes
     case '/logout':

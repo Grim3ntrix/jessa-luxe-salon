@@ -30,7 +30,26 @@ document.addEventListener('DOMContentLoaded', function() {
                         { title: "Price", field: "service.price", minWidth: 100 },
                         { title: "Appointment Date", field: "appointment_date", minWidth: 180 },
                         { title: "Appointment Time", field: "appointment_time", minWidth: 180 },
-                        { title: "Status", field: "status", minWidth: 100 },
+                        { 
+                        title: "Status", 
+                        field: "status", 
+                        minWidth: 100,
+                            formatter: function(cell) {
+                                const status = cell.getValue().toLowerCase();
+
+                                const statusClassMap = {
+                                    available: 'badge rounded-pill bg-success',
+                                    booked: 'badge rounded-pill bg-warning',
+                                    completed: 'badge rounded-pill bg-primary',
+                                    blocked: 'badge rounded-pill bg-danger',
+                                    cancelled: 'badge rounded-pill bg-secondary'
+                                };
+
+                                const badgeClass = statusClassMap[status] || 'badge rounded-pill bg-light';
+
+                                return `<span class="${badgeClass}">${status.charAt(0).toUpperCase() + status.slice(1)}</span>`;
+                            }
+                        },
                         {
                             title: "Actions",
                             formatter: function(cell, formatterParams, onRendered) {

@@ -9,7 +9,7 @@
         <a href="/admin/schedule">Schedule</a>
     </div>
     <div class="nav-right">
-        <a href="/admin/profile">Profile</a>
+        <!-- <a href="/admin/profile">Profile</a> -->
         <a href="/logout">Logout</a>
     </div>
 </nav>
